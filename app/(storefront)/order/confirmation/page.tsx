@@ -1,16 +1,64 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 
 interface ConfirmationPageProps {
   searchParams: Promise<{
     orderNumber?: string;
-    status?: string;
   }>;
 }
 
 export default async function OrderConfirmationPage({
   searchParams,
 }: ConfirmationPageProps) {
-  const { orderNumber = "BB-0000", status = "success" } = await searchParams;
+  const { orderNumber } = await searchParams;
+
+  if (!orderNumber) {
+    redirect("/");
+  }
+
+  // Fetch the order from the database
+  const order = await prisma.order.findUnique({
+    where: { orderNumber },
+    include: {
+      items: {
+        include: {
+          variant: true,
+        },
+      },
+    },
+  });
+
+  if (!order) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center p-4 bg-cream-100">
+        <div className="max-w-md w-full bg-white border border-forest-800/5 p-8 rounded-2xl shadow-md text-center space-y-4">
+          <span className="text-3xl">⚠️</span>
+          <h1 className="text-2xl font-bold tracking-tight text-forest-950">Order Not Found</h1>
+          <p className="text-sm text-ink-900/60">
+            We couldn't locate an order with the reference <strong className="text-ink-900 font-bold">{orderNumber}</strong>.
+          </p>
+          <Link
+            href="/"
+            className="inline-block bg-forest-950 hover:bg-forest-800 text-cream-100 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide uppercase transition-colors"
+          >
+            Return Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const formatPrice = (kobo: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(kobo / 100);
+  };
+
+  const isPaid = order.paymentStatus === "PAID";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -24,40 +72,91 @@ export default async function OrderConfirmationPage({
       </header>
 
       {/* Confirmation content */}
-      <main className="flex-grow max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center justify-center">
-        <div className="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 mb-8">
+      <main className="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center justify-center w-full">
+        <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-8 border ${
+          isPaid 
+            ? "bg-[#25D366]/10 border-[#25D366]/30 text-[#20ba5a]" 
+            : "bg-gold-500/10 border-gold-500/30 text-gold-700"
+        }`}>
           <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
 
-        <h1 className="text-3xl font-bold tracking-tight mb-3">Thank you — your order is confirmed!</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">
+          {isPaid ? "Payment Successful!" : "Order Placed Successfully!"}
+        </h1>
         <p className="text-sm text-ink-900/60 mb-8 max-w-md">
-          Your order number is <strong className="text-ink-900 font-bold">{orderNumber}</strong>. We've received your details and will reach out via phone or WhatsApp shortly to confirm delivery arrangements.
+          Your order number is <strong className="text-ink-900 font-bold">{order.orderNumber}</strong>. We've captured your details and will call or message you shortly to confirm delivery.
         </p>
 
-        <div className="bg-white border border-forest-800/5 p-6 rounded-xl w-full text-left space-y-4 shadow-sm mb-8">
-          <h3 className="font-bold border-b border-forest-800/5 pb-2 text-sm uppercase tracking-wider text-ink-900/60">What Happens Next?</h3>
-          <ul className="space-y-3 text-sm text-ink-900/80">
-            <li className="flex items-start">
-              <span className="text-gold-500 font-bold mr-2">1.</span>
-              <span>Our team will contact you to verify your delivery address.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-gold-500 font-bold mr-2">2.</span>
-              <span>Your order is packed securely and dispatched via our delivery partners.</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-gold-500 font-bold mr-2">3.</span>
-              <span>You receive your package (2 to 5 business days depending on location).</span>
-            </li>
-          </ul>
+        {/* Invoice Summary */}
+        <div className="bg-white border border-forest-800/5 p-6 sm:p-8 rounded-2xl w-full text-left shadow-sm mb-8 space-y-6">
+          <div className="flex justify-between items-center border-b border-forest-800/5 pb-4">
+            <h3 className="font-serif text-lg font-bold">Summary Invoice</h3>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
+              isPaid
+                ? "bg-[#25D366]/10 border-[#25D366]/20 text-[#20ba5a]"
+                : "bg-yellow-500/10 border-yellow-500/20 text-yellow-700"
+            }`}>
+              {order.paymentStatus}
+            </span>
+          </div>
+
+          {/* Delivery Details */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-ink-900/40 block">Delivery Address</span>
+              <span className="font-medium text-forest-950 block mt-1">{order.customerName}</span>
+              <span className="text-ink-900/80 block mt-0.5">{order.address}</span>
+              <span className="text-ink-900/80 block mt-0.5">{order.lga}, {order.state}</span>
+            </div>
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-ink-900/40 block">Contact Info</span>
+              <span className="font-medium text-ink-900/80 block mt-1">{order.phone}</span>
+              {order.altPhone && <span className="text-ink-900/80 block mt-0.5">{order.altPhone}</span>}
+              {order.email && <span className="text-ink-900/60 block mt-0.5">{order.email}</span>}
+            </div>
+          </div>
+
+          {/* Items Table */}
+          <div className="border-t border-forest-800/5 pt-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-ink-900/40 block mb-3">Items Ordered</span>
+            <div className="space-y-3">
+              {order.items.map((item) => (
+                <div key={item.id} className="flex justify-between items-center text-sm">
+                  <div>
+                    <span className="font-bold text-forest-950">{item.variant.name}</span>
+                    <span className="text-xs text-ink-900/50 ml-2">Qty: {item.quantity} · Size: {item.variant.sizeLabel}</span>
+                  </div>
+                  <span className="font-medium">{formatPrice(item.unitPrice * item.quantity)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Totals */}
+          <div className="border-t border-forest-800/5 pt-4 space-y-2 text-sm">
+            <div className="flex justify-between text-ink-900/60">
+              <span>Subtotal</span>
+              <span>{formatPrice(order.subtotal)}</span>
+            </div>
+            <div className="flex justify-between text-ink-900/60">
+              <span>Delivery Fee</span>
+              <span>{formatPrice(order.deliveryFee)}</span>
+            </div>
+            <div className="flex justify-between text-base font-bold border-t border-forest-800/5 pt-3">
+              <span>Total Paid</span>
+              <span className="text-gold-700">{formatPrice(order.total)}</span>
+            </div>
+          </div>
         </div>
 
+        {/* Navigation CTAs */}
         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full justify-center">
           <Link
             href="/"
-            className="bg-forest-950 hover:bg-forest-800 text-cream-100 px-8 py-3 rounded-lg font-bold text-sm tracking-wider uppercase transition-colors"
+            className="bg-forest-950 hover:bg-forest-800 text-cream-100 px-8 py-3 rounded-lg font-bold text-sm tracking-wider uppercase transition-colors shadow-lg"
           >
             Return Home
           </Link>
