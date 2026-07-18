@@ -1,13 +1,12 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { authConfig } from "@/auth.config";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  pages: {
-    signIn: "/admin/login",
-  },
+  ...authConfig,
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -43,19 +42,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isAdminRoute = nextUrl.pathname.startsWith("/admin");
-      const isLoginRoute = nextUrl.pathname === "/admin/login";
-
-      if (isAdminRoute && !isLoginRoute) {
-        if (isLoggedIn) return true;
-        return Response.redirect(new URL("/admin/login", nextUrl));
-      } else if (isLoginRoute && isLoggedIn) {
-        return Response.redirect(new URL("/admin", nextUrl));
-      }
-      return true;
-    },
-  },
 });
