@@ -93,7 +93,7 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-cream-100/80 leading-relaxed max-w-xl">
-              A herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum, and Gorontula - crafted to support strength, stamina, energy, and confidence, the natural way.
+              A herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum, and Gorontula crafted to support strength, stamina, energy, and confidence, the natural way.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Link
@@ -131,7 +131,7 @@ export default async function HomePage() {
             <span className="flex items-center space-x-2"><Leaf className="w-4 h-4 text-gold-500" /> <span>100% Natural Ingredients</span></span>
             <span className="flex items-center space-x-2"><Truck className="w-4 h-4 text-gold-500" /> <span>Delivered Nationwide</span></span>
             <span className="flex items-center space-x-2"><CreditCard className="w-4 h-4 text-gold-500" /> <span>Pay on Delivery or Online</span></span>
-            <span className="flex items-center space-x-2"><Shield className="w-4 h-4 text-gold-500" /> <span>Made in Lagos</span></span>
+            <span className="flex items-center space-x-2"><Shield className="w-4 h-4 text-gold-500" /> <span>Made in Nigeria</span></span>
           </div>
         </div>
       </div>
