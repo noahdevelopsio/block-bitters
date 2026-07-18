@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     title: "Block Bitters | Male Vitality Bottled",
     description: "Premium handcrafted herbal bitters.",
   },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
