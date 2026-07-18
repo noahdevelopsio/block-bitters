@@ -1,8 +1,49 @@
 import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import ProductSelector from "@/components/storefront/ProductSelector";
 
-export default function ProductPage() {
+export default async function ProductPage() {
+  const variants = await prisma.productVariant.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
+
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Product JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Block Bitters",
+            "image": [`${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/icon.svg`],
+            "description": "Premium herbal supplement crafted for men to support strength, stamina, energy, and confidence.",
+            "sku": "BB-HERBAL",
+            "brand": {
+              "@type": "Brand",
+              "name": "Block Bitters",
+            },
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "NGN",
+              "lowPrice": variants.length > 0 ? Math.min(...variants.map((v) => v.price)) / 100 : 15000,
+              "highPrice": variants.length > 0 ? Math.max(...variants.map((v) => v.price)) / 100 : 76500,
+              "offerCount": variants.length,
+              "offers": variants.map((v) => ({
+                "@type": "Offer",
+                "name": v.name,
+                "price": v.price / 100,
+                "priceCurrency": "NGN",
+                "itemCondition": "https://schema.org/NewCondition",
+                "availability": v.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                "url": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/product`,
+              })),
+            },
+          }),
+        }}
+      />
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -42,7 +83,6 @@ export default function ProductPage() {
             <div className="space-y-2">
               <span className="text-gold-700 text-xs font-semibold tracking-widest uppercase block">Premium Herbal Supplement</span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Block Bitters</h1>
-              <p className="text-2xl font-serif font-bold text-gold-700">₦15,000</p>
             </div>
 
             <div className="prose prose-sm text-ink-900/80">
@@ -51,37 +91,8 @@ export default function ProductPage() {
               </p>
             </div>
 
-            {/* Variants Selector */}
-            <div className="space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-ink-900/60 block">Select Variant</span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <button className="border-2 border-gold-500 bg-white p-4 rounded-xl text-left font-medium transition-all">
-                  <div className="text-sm font-bold">Single Bottle</div>
-                  <div className="text-xs text-ink-900/60">300ml</div>
-                  <div className="text-sm text-gold-700 font-bold mt-1">₦15,000</div>
-                </button>
-                <button className="border border-forest-800/10 bg-white p-4 rounded-xl text-left font-medium transition-all hover:border-gold-500/50">
-                  <div className="text-sm font-bold">3-Bottle Pack</div>
-                  <div className="text-xs text-ink-900/60">Save 10%</div>
-                  <div className="text-sm text-gold-700 font-bold mt-1">₦40,500</div>
-                </button>
-                <button className="border border-forest-800/10 bg-white p-4 rounded-xl text-left font-medium transition-all hover:border-gold-500/50">
-                  <div className="text-sm font-bold">6-Bottle Pack</div>
-                  <div className="text-xs text-ink-900/60">Save 15%</div>
-                  <div className="text-sm text-gold-700 font-bold mt-1">₦76,500</div>
-                </button>
-              </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="space-y-4 pt-4 border-t border-forest-800/10">
-              <Link
-                href="/checkout"
-                className="w-full bg-forest-950 hover:bg-forest-800 text-cream-100 text-center block py-4 rounded-lg font-bold uppercase tracking-wider transition-colors shadow-lg"
-              >
-                Proceed to Checkout
-              </Link>
-            </div>
+            {/* Dynamic Product Selector Component */}
+            <ProductSelector variants={variants} />
 
             {/* Disclaimer */}
             <p className="text-[11px] text-ink-900/50 leading-relaxed italic">

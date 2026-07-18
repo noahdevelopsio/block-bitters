@@ -1,8 +1,51 @@
 import Link from "next/link";
+import { prisma } from "@/lib/prisma";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const variants = await prisma.productVariant.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
+
+  const formatPrice = (kobo: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(kobo / 100);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      {/* LocalBusiness JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Block Bitters",
+            "image": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/logo-mono.svg`,
+            "@id": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+            "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+            "telephone": "+2348121250431",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Shop 20A, Igando Multipurpose Market, Igando, Alimosho",
+              "addressLocality": "Lagos",
+              "addressRegion": "Lagos State",
+              "addressCountry": "NG"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+2348121250431",
+              "contactType": "customer service",
+              "email": "dblockentertainer@gmail.com"
+            }
+          })
+        }}
+      />
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -139,6 +182,62 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Products Shop Grid Section */}
+      <section className="py-24 bg-white text-ink-900 border-t border-forest-800/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-gold-700 text-xs font-semibold tracking-widest uppercase block">Shop Now</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Choose Your Block Bitters Bundle</h2>
+            <p className="text-base text-ink-900/60">
+              Get the original herbal formula delivered direct to your door. Select a bottle or save with our multi-pack bundles.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {variants.map((v) => {
+              const isOutOfStock = v.stock <= 0;
+              return (
+                <div
+                  key={v.id}
+                  className="border border-forest-800/10 rounded-2xl bg-cream-100/30 p-6 flex flex-col justify-between hover:border-gold-500/30 transition-all duration-300 shadow-sm"
+                >
+                  <div className="space-y-4">
+                    <div className="bg-forest-950 border border-gold-500/10 aspect-video rounded-xl flex items-center justify-center relative overflow-hidden">
+                      <div className="w-12 h-12 rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/20 text-gold-300 text-xl font-serif">
+                        BB
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-start">
+                      <h3 className="font-serif text-xl font-bold text-forest-950">{v.name}</h3>
+                      <span className="bg-gold-500/10 text-gold-700 text-xs font-bold px-2 py-0.5 rounded border border-gold-500/20">
+                        {v.sizeLabel}
+                      </span>
+                    </div>
+                    <p className="text-sm text-ink-900/70 leading-relaxed min-h-[60px]">{v.description}</p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-forest-800/5 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-ink-900/40 block">Price</span>
+                      <span className="text-xl font-serif font-bold text-gold-700">{formatPrice(v.price)}</span>
+                    </div>
+                    {isOutOfStock ? (
+                      <span className="text-xs text-red-500 font-bold uppercase tracking-wider">Out of Stock</span>
+                    ) : (
+                      <Link
+                        href={`/checkout?variantId=${v.id}&quantity=1`}
+                        className="bg-forest-950 hover:bg-forest-800 text-cream-100 px-5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors shadow-sm shadow-forest-950/10"
+                      >
+                        Buy Now
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-forest-950 text-cream-100/80 py-16 border-t border-gold-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -156,7 +255,7 @@ export default function HomePage() {
             <ul className="space-y-2 text-sm text-cream-100/60">
               <li>📧 dblockentertainer@gmail.com</li>
               <li>📞 +234 812 125 0431</li>
-              <li>📍 Igando Market, Alimosho, Lagos</li>
+              <li>📍 Shop 20A, Igando Multipurpose Market, Igando, Alimosho, Lagos</li>
             </ul>
           </div>
           <div className="space-y-4">

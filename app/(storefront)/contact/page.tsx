@@ -3,6 +3,27 @@ import Link from "next/link";
 export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* LocalBusiness JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Block Bitters",
+            "image": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/logo-mono.svg`,
+            "url": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/contact`,
+            "telephone": "+2348121250431",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Shop 20A, Igando Multipurpose Market, Igando, Alimosho",
+              "addressLocality": "Lagos",
+              "addressRegion": "Lagos State",
+              "addressCountry": "NG",
+            },
+          }),
+        }}
+      />
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
