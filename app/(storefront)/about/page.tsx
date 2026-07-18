@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -6,8 +7,15 @@ export default function AboutPage() {
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-gold-300">
-            Block Bitters
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-horizontal-dark.svg"
+              alt="Block Bitters"
+              width={160}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
           <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wider uppercase">
             <Link href="/" className="hover:text-gold-300 transition-colors">Home</Link>

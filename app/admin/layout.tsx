@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { adminSignOut } from "./actions";
 import { LayoutDashboard, Package, ShoppingCart, CreditCard, LogOut } from "lucide-react";
 
@@ -12,8 +13,15 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-forest-950 text-cream-100 flex flex-col border-r border-gold-500/10">
         <div className="h-20 flex items-center px-6 border-b border-gold-500/10">
-          <Link href="/admin" className="font-serif text-xl font-bold text-gold-300">
-            BB Control Room
+          <Link href="/admin" className="flex items-center">
+            <Image
+              src="/logo-horizontal-dark.svg"
+              alt="Block Bitters Admin"
+              width={160}
+              height={40}
+              priority
+              className="h-8 w-auto"
+            />
           </Link>
         </div>
         <nav className="flex-grow p-6 space-y-2 text-sm">

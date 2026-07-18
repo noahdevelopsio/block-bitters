@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { Leaf, Truck, CreditCard, Shield, Mail, Phone, MapPin } from "lucide-react";
 
@@ -51,9 +52,16 @@ export default async function HomePage() {
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="font-serif text-2xl font-bold tracking-tight text-gold-300">
-              Block Bitters
-            </span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo-horizontal-dark.svg"
+                alt="Block Bitters"
+                width={160}
+                height={40}
+                priority
+                className="h-10 w-auto"
+              />
+            </Link>
           </div>
           <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wider uppercase">
             <Link href="/" className="text-gold-300 transition-colors">Home</Link>
@@ -78,9 +86,6 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(23,58,40,0.5),transparent)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <span className="text-gold-500 text-xs font-semibold tracking-[0.25em] uppercase block">
-              Handcrafted in Lagos
-            </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-cream-100">
               The Power of Nature, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-700">
@@ -106,26 +111,14 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="flex justify-center">
-            {/* Visual representation card for product mockup */}
-            <div className="relative w-80 h-96 rounded-2xl bg-gradient-to-b from-forest-800 to-forest-950 border border-gold-500/20 p-6 flex flex-col justify-between shadow-2xl shadow-forest-800/50 overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-gold-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex justify-between items-start">
-                <span className="bg-gold-500/10 text-gold-300 text-xs font-semibold px-3 py-1 rounded-full border border-gold-500/20 uppercase tracking-wider">
-                  Premium Quality
-                </span>
-                <span className="text-gold-300 text-sm font-medium">300ml</span>
-              </div>
-              <div className="my-auto text-center space-y-2 relative z-10">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/30 text-gold-300 text-2xl font-serif">
-                  BB
-                </div>
-                <h3 className="font-serif text-3xl font-bold tracking-wide text-cream-100">Block Bitters</h3>
-                <p className="text-xs text-gold-300/80 uppercase tracking-widest font-sans">Handcrafted Herbal Blend</p>
-              </div>
-              <div className="flex justify-between items-center border-t border-gold-500/10 pt-4">
-                <span className="text-cream-100/60 text-xs">Single Bottle</span>
-                <span className="text-gold-300 font-serif text-lg font-bold">₦15,000</span>
-              </div>
+            <div className="relative w-80 h-96 flex items-center justify-center">
+              <Image
+                src="/block-bitters-bottle-transparent-1600w.png"
+                alt="Block Bitters Bottle"
+                fill
+                priority
+                className="object-contain drop-shadow-[0_20px_50px_rgba(199,154,62,0.2)]"
+              />
             </div>
           </div>
         </div>
@@ -200,13 +193,16 @@ export default async function HomePage() {
               return (
                 <div
                   key={v.id}
-                  className="border border-forest-800/10 rounded-2xl bg-cream-100/30 p-6 flex flex-col justify-between hover:border-gold-500/30 transition-all duration-300 shadow-sm"
+                  className="group border border-forest-800/10 rounded-2xl bg-cream-100/30 p-6 flex flex-col justify-between hover:border-gold-500/30 transition-all duration-300 shadow-sm"
                 >
                   <div className="space-y-4">
-                    <div className="bg-forest-950 border border-gold-500/10 aspect-video rounded-xl flex items-center justify-center relative overflow-hidden">
-                      <div className="w-12 h-12 rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/20 text-gold-300 text-xl font-serif">
-                        BB
-                      </div>
+                    <div className="bg-forest-950 border border-gold-500/10 aspect-square rounded-xl flex items-center justify-center relative overflow-hidden p-6">
+                      <Image
+                        src="/block-bitters-bottle-transparent-800w.webp"
+                        alt={v.name}
+                        fill
+                        className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                     <div className="flex justify-between items-start">
                       <h3 className="font-serif text-xl font-bold text-forest-950">{v.name}</h3>
@@ -243,7 +239,13 @@ export default async function HomePage() {
       <footer className="bg-forest-950 text-cream-100/80 py-16 border-t border-gold-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
-            <h3 className="font-serif text-2xl font-bold tracking-tight text-gold-300">Block Bitters</h3>
+            <Image
+              src="/logo-horizontal-dark.svg"
+              alt="Block Bitters"
+              width={160}
+              height={40}
+              className="h-10 w-auto mb-2"
+            />
             <p className="text-sm text-cream-100/60">
               The Power of Nature - Bottled for Men
             </p>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import ProductSelector from "@/components/storefront/ProductSelector";
 
@@ -47,8 +48,15 @@ export default async function ProductPage() {
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-gold-300">
-            Block Bitters
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-horizontal-dark.svg"
+              alt="Block Bitters"
+              width={160}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
           <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wider uppercase">
             <Link href="/" className="hover:text-gold-300 transition-colors">Home</Link>
@@ -71,10 +79,14 @@ export default async function ProductPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Images Gallery */}
           <div className="space-y-4">
-            <div className="bg-forest-950 border border-gold-500/20 aspect-square rounded-2xl flex items-center justify-center p-12 relative overflow-hidden">
-              <div className="w-48 h-48 rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/20 text-gold-300 text-6xl font-serif">
-                BB
-              </div>
+            <div className="bg-forest-950 border border-gold-500/20 aspect-square rounded-2xl flex items-center justify-center p-8 relative overflow-hidden">
+              <Image
+                src="/block-bitters-bottle-transparent-1600w.png"
+                alt="Block Bitters Bottle"
+                fill
+                priority
+                className="object-contain p-4 drop-shadow-[0_20px_50px_rgba(199,154,62,0.15)]"
+              />
             </div>
           </div>
 

@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     default: "Block Bitters | The Power of Nature, Bottled for Men",
     template: "%s | Block Bitters",
   },
-  description: "A premium herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum and Gorontula, handcrafted in Lagos to support male strength, stamina, and energy.",
+  description: "A premium herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum and Gorontula, handcrafted to support male strength, stamina, and energy.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Block Bitters | The Power of Nature, Bottled for Men",
-    description: "Handcrafted in Lagos to support male strength, stamina, and energy. 100% natural ingredients.",
+    description: "Handcrafted to support male strength, stamina, and energy. 100% natural ingredients.",
     url: "/",
     siteName: "Block Bitters",
     locale: "en_NG",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Block Bitters | Male Vitality Bottled",
-    description: "Premium herbal bitters handcrafted in Lagos, Nigeria.",
+    description: "Premium handcrafted herbal bitters.",
   },
 };
 

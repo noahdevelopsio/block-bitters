@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CheckoutForm from "@/components/storefront/CheckoutForm";
@@ -61,8 +62,15 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
       {/* Header */}
       <header className="border-b border-forest-800/10 bg-forest-950 text-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-gold-300">
-            Block Bitters
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-horizontal-dark.svg"
+              alt="Block Bitters"
+              width={160}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
           <span className="text-xs uppercase tracking-widest text-cream-100/60 font-semibold">
             Secure Checkout

@@ -1,0 +1,26 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Block Bitters icon">
+  <defs>
+    <linearGradient id="gold" x1="0.1" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#EACB80"/>
+      <stop offset="50%" stop-color="#CB9E49"/>
+      <stop offset="100%" stop-color="#916F31"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="100" height="100" rx="20" fill="#1B3327"/>
+
+  <g transform="translate(12, 1.4)">
+    <!-- LEFT blade: traced from reference -->
+    <path d="M16.18 35.14 L11.55 43.45 L8.95 51.23 L8.0 59.14 L8.95 66.5 L12.5 74.14 L17.14 79.32 L32.82 89.55 L33.5 82.59 L31.73 74.14 L28.05 64.18 L18.91 47.27 L17.0 41.14 Z"
+          fill="url(#gold)" stroke="#6B4A22" stroke-width="1" stroke-linejoin="round"/>
+
+    <!-- RIGHT blade: traced from reference -->
+    <path d="M57.36 39.77 L57.09 49.32 L55.05 56.95 L48.5 70.05 L39.91 83.82 L39.5 86.55 L40.59 92.0 L44.14 88.86 L53.41 85.05 L59.55 81.23 L64.05 76.59 L67.05 70.86 L68.0 66.23 L68.0 61.86 L67.05 56.41 L63.77 48.5 Z"
+          fill="url(#gold)" stroke="#6B4A22" stroke-width="1" stroke-linejoin="round"/>
+
+    <!-- CENTER blade: traced from reference, tallest with ball finial -->
+    <path d="M41.27 8.0 L40.32 8.27 L40.32 10.32 L36.09 16.59 L32.27 24.09 L29.68 32.0 L28.73 39.36 L30.09 52.59 L37.73 77.41 L42.5 69.91 L46.32 61.59 L48.77 49.73 L47.95 37.59 L42.5 18.5 Z"
+          fill="url(#gold)" stroke="#6B4A22" stroke-width="1" stroke-linejoin="round"/>
+    <circle cx="40.8" cy="7" r="1.8" fill="url(#gold)" stroke="#6B4A22" stroke-width="0.7"/>
+  </g>
+</svg>
