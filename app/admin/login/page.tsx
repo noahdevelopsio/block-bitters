@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { authenticate } from "./actions";
+import { AlertTriangle } from "lucide-react";
 
 export default function AdminLoginPage() {
   const [errorMessage, formAction, isPending] = useActionState(
@@ -21,8 +22,9 @@ export default function AdminLoginPage() {
         </div>
 
         {errorMessage && (
-          <div className="p-3 bg-red-50 border border-red-500/10 text-red-700 text-xs rounded-lg text-center font-medium">
-            ⚠️ {errorMessage}
+          <div className="p-3 bg-red-50 border border-red-500/10 text-red-700 text-xs rounded-lg flex items-center justify-center space-x-2 font-medium">
+            <AlertTriangle className="w-4 h-4 text-red-700 flex-shrink-0" />
+            <span>{errorMessage}</span>
           </div>
         )}
 

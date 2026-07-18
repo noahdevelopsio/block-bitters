@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { AlertTriangle } from "lucide-react";
 
 interface ConfirmationPageProps {
   searchParams: Promise<{
@@ -33,7 +34,7 @@ export default async function OrderConfirmationPage({
     return (
       <div className="flex flex-col min-h-screen items-center justify-center p-4 bg-cream-100">
         <div className="max-w-md w-full bg-white border border-forest-800/5 p-8 rounded-2xl shadow-md text-center space-y-4">
-          <span className="text-3xl">⚠️</span>
+          <AlertTriangle className="w-10 h-10 text-gold-500 mx-auto mb-2" />
           <h1 className="text-2xl font-bold tracking-tight text-forest-950">Order Not Found</h1>
           <p className="text-sm text-ink-900/60">
             We couldn't locate an order with the reference <strong className="text-ink-900 font-bold">{orderNumber}</strong>.

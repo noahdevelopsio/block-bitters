@@ -35,7 +35,7 @@ export default function AboutPage() {
 
           <div className="bg-white border border-forest-800/5 p-8 sm:p-12 rounded-2xl shadow-sm space-y-6 text-base text-ink-900/80 leading-relaxed">
             <p>
-              Block Bitters is produced by Block Media Resources in Igando, Lagos — a herbal bitters blend built on traditional botanical knowledge and modern quality standards. We started Block Bitters because we believe men deserve natural, honest alternatives — no synthetic shortcuts, just nature, bottled with care.
+              Block Bitters is produced by Block Media Resources in Igando, Lagos, a herbal bitters blend built on traditional botanical knowledge and modern quality standards. We started Block Bitters because we believe men deserve natural, honest alternatives - no synthetic shortcuts, just nature, bottled with care.
             </p>
             <p>
               Every bottle is a careful curation of premium botanicals like Tongkat Ali, Maka Root, Korean Red Ginseng, plum, honey, and Gorontula. We do not compromise on sourcing, ensuring that the strength and properties of nature are preserved for your wellness.

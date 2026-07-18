@@ -4,7 +4,7 @@ export default function FAQPage() {
   const faqs = [
     {
       q: "What is Block Bitters made from?",
-      a: "Block Bitters is made from a blend of honey, Tongkat Ali, Maka Root, Korean Red Ginseng, plum, and Gorontula — all-natural botanical ingredients.",
+      a: "Block Bitters is made from a blend of honey, Tongkat Ali, Maka Root, Korean Red Ginseng, plum, and Gorontula, all-natural botanical ingredients.",
     },
     {
       q: "How do I pay?",
@@ -12,7 +12,7 @@ export default function FAQPage() {
     },
     {
       q: "Do you deliver nationwide?",
-      a: "Yes — we deliver to all 36 states and the FCT. Delivery fees and timelines vary by location.",
+      a: "Yes, we deliver to all 36 states and the FCT. Delivery fees and timelines vary by location.",
     },
     {
       q: "Is Block Bitters safe to use?",
@@ -20,11 +20,11 @@ export default function FAQPage() {
     },
     {
       q: "How long does delivery take?",
-      a: "Delivery timelines depend on your location — typically 2–5 business days within Nigeria.",
+      a: "Delivery timelines depend on your location, typically 2-5 business days within Nigeria.",
     },
     {
       q: "Can I track my order?",
-      a: "Yes — after placing your order, you'll receive an order number you can use to check status, or contact us directly via WhatsApp or phone.",
+      a: "Yes, after placing your order, you'll receive an order number you can use to check status, or contact us directly via WhatsApp or phone.",
     },
   ];
 

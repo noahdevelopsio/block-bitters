@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { Leaf, Truck, CreditCard, Shield, Mail, Phone, MapPin } from "lucide-react";
 
 export default async function HomePage() {
   const variants = await prisma.productVariant.findMany({
@@ -87,7 +88,7 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-cream-100/80 leading-relaxed max-w-xl">
-              A herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum, and Gorontula — crafted to support strength, stamina, energy, and confidence, the natural way.
+              A herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum, and Gorontula - crafted to support strength, stamina, energy, and confidence, the natural way.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Link
@@ -131,13 +132,13 @@ export default async function HomePage() {
       </section>
 
       {/* Trust Strip */}
-      <div className="bg-forest-800 text-cream-100/90 py-4 border-y border-gold-500/10">
+      <div className="bg-forest-800 text-cream-100/90 py-5 border-y border-gold-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-3 text-xs sm:text-sm font-medium tracking-wider uppercase text-center">
-            <span>🌿 100% Natural Ingredients</span>
-            <span>🚚 Delivered Nationwide</span>
-            <span>💳 Pay on Delivery or Online</span>
-            <span>🇳🇬 Made in Lagos</span>
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 text-xs sm:text-sm font-medium tracking-wider uppercase text-center items-center">
+            <span className="flex items-center space-x-2"><Leaf className="w-4 h-4 text-gold-500" /> <span>100% Natural Ingredients</span></span>
+            <span className="flex items-center space-x-2"><Truck className="w-4 h-4 text-gold-500" /> <span>Delivered Nationwide</span></span>
+            <span className="flex items-center space-x-2"><CreditCard className="w-4 h-4 text-gold-500" /> <span>Pay on Delivery or Online</span></span>
+            <span className="flex items-center space-x-2"><Shield className="w-4 h-4 text-gold-500" /> <span>Made in Lagos</span></span>
           </div>
         </div>
       </div>
@@ -148,7 +149,7 @@ export default async function HomePage() {
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Why Men Choose Block Bitters</h2>
             <p className="text-base text-ink-900/60">
-              Roots, herbs, and honey — crafted responsibly for the modern man.
+              Roots, herbs, and honey - crafted responsibly for the modern man.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -244,7 +245,7 @@ export default async function HomePage() {
           <div className="space-y-4">
             <h3 className="font-serif text-2xl font-bold tracking-tight text-gold-300">Block Bitters</h3>
             <p className="text-sm text-cream-100/60">
-              The Power of Nature — Bottled for Men
+              The Power of Nature - Bottled for Men
             </p>
             <p className="text-xs text-cream-100/40">
               © {new Date().getFullYear()} Block Bitters. All rights reserved.
@@ -252,10 +253,19 @@ export default async function HomePage() {
           </div>
           <div className="space-y-4">
             <h4 className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-300">Contact Us</h4>
-            <ul className="space-y-2 text-sm text-cream-100/60">
-              <li>📧 dblockentertainer@gmail.com</li>
-              <li>📞 +234 812 125 0431</li>
-              <li>📍 Shop 20A, Igando Multipurpose Market, Igando, Alimosho, Lagos</li>
+            <ul className="space-y-3 text-sm text-cream-100/60">
+              <li className="flex items-center space-x-2">
+                <Mail className="w-4 h-4 text-gold-500" />
+                <span>dblockentertainer@gmail.com</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-gold-500" />
+                <span>+234 812 125 0431</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin className="w-4 h-4 text-gold-500 mt-0.5" />
+                <span>Shop 20A, Igando Multipurpose Market, Igando, Alimosho, Lagos</span>
+              </li>
             </ul>
           </div>
           <div className="space-y-4">

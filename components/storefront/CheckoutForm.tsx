@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AlertTriangle } from "lucide-react";
 
 interface DeliveryZone {
   state: string;
@@ -127,8 +128,9 @@ export default function CheckoutForm({
       {/* Inputs */}
       <div className="lg:col-span-2 space-y-6">
         {error && (
-          <div className="p-4 border border-red-500/20 bg-red-500/5 text-red-700 text-sm rounded-xl">
-            ⚠️ {error}
+          <div className="p-4 border border-red-500/20 bg-red-500/5 text-red-700 text-sm rounded-xl flex items-center space-x-2">
+            <AlertTriangle className="w-4 h-4 text-red-700 flex-shrink-0" />
+            <span>{error}</span>
           </div>
         )}
 

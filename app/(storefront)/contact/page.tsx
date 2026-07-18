@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -66,19 +67,19 @@ export default function ContactPage() {
 
               <div className="space-y-4 pt-4 border-t border-forest-800/5 text-sm">
                 <div className="flex items-center space-x-3">
-                  <span className="text-lg">📧</span>
+                  <Mail className="w-4 h-4 text-gold-500" />
                   <a href="mailto:dblockentertainer@gmail.com" className="hover:text-gold-700 transition-colors">
                     dblockentertainer@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <span className="text-lg">📞</span>
+                  <Phone className="w-4 h-4 text-gold-500" />
                   <a href="tel:+2348121250431" className="hover:text-gold-700 transition-colors">
                     +234 812 125 0431
                   </a>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-lg mt-0.5">📍</span>
+                  <MapPin className="w-4 h-4 text-gold-500 mt-0.5" />
                   <span>
                     Shop 20A, Igando Multipurpose Market,<br />
                     Igando, Alimosho, Lagos, Nigeria
