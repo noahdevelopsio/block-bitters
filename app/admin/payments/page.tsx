@@ -1,13 +1,46 @@
-export default function AdminPaymentsPage() {
-  const transactions = [
-    { ref: "FLW-TX-109283", order: "BB-0011", amount: "₦32,000", status: "SUCCESSFUL", date: "2026-07-18 05:40" },
-  ];
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+
+export default async function AdminPaymentsPage() {
+  // Query all orders with payment details
+  const orders = await prisma.order.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    select: {
+      id: true,
+      orderNumber: true,
+      customerName: true,
+      total: true,
+      paymentMethod: true,
+      paymentStatus: true,
+      flutterwaveRef: true,
+      flutterwaveTxId: true,
+      createdAt: true,
+    },
+  });
+
+  const formatPrice = (kobo: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(kobo / 100);
+  };
+
+  const formatDate = (date: Date) => {
+    return new Intl.DateTimeFormat("en-NG", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(date);
+  };
 
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Payments Log</h1>
-        <p className="text-sm text-ink-900/60 mt-1">Reconcile Flutterwave transactions and cash collections.</p>
+        <p className="text-sm text-ink-900/60 mt-1">Reconcile online Flutterwave payments and Cash collections.</p>
       </div>
 
       {/* Table */}
@@ -15,27 +48,58 @@ export default function AdminPaymentsPage() {
         <table className="w-full text-left border-collapse text-sm">
           <thead>
             <tr className="bg-cream-100/50 border-b border-forest-800/5 text-ink-900/60 font-semibold uppercase tracking-wider text-xs">
-              <th className="p-4">Transaction Ref</th>
-              <th className="p-4">Order Number</th>
+              <th className="p-4">Tx Reference</th>
+              <th className="p-4">Order #</th>
+              <th className="p-4">Customer</th>
+              <th className="p-4">Billing Channel</th>
               <th className="p-4">Amount</th>
-              <th className="p-4">Status</th>
-              <th className="p-4">Date</th>
+              <th className="p-4">Payment Status</th>
+              <th className="p-4">Transaction Date</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-forest-800/5">
-            {transactions.map((t, idx) => (
-              <tr key={idx} className="hover:bg-cream-100/10">
-                <td className="p-4 font-bold text-forest-950">{t.ref}</td>
-                <td className="p-4 text-forest-950 font-medium">{t.order}</td>
-                <td className="p-4 text-gold-700 font-medium">{t.amount}</td>
-                <td className="p-4">
-                  <span className="inline-block text-[10px] font-bold px-2.5 py-1 rounded bg-[#25D366]/10 text-[#20ba5a]">
-                    {t.status}
-                  </span>
+            {orders.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="p-8 text-center text-ink-900/50">
+                  No payment logs found.
                 </td>
-                <td className="p-4 text-ink-900/60">{t.date}</td>
               </tr>
-            ))}
+            ) : (
+              orders.map((o) => (
+                <tr key={o.id} className="hover:bg-cream-100/10">
+                  <td className="p-4 font-semibold text-forest-950">
+                    {o.paymentMethod === "FLUTTERWAVE" 
+                      ? (o.flutterwaveRef || "Pending FLW Ref") 
+                      : `POD-${o.orderNumber.split("-")[1] || "COLLECT"}`}
+                  </td>
+                  <td className="p-4 font-bold">
+                    <Link href={`/admin/orders?orderId=${o.id}`} className="text-forest-800 hover:text-gold-700 underline">
+                      {o.orderNumber}
+                    </Link>
+                  </td>
+                  <td className="p-4 text-ink-900/80">{o.customerName}</td>
+                  <td className="p-4">
+                    <span className="text-xs font-semibold text-ink-900/60 uppercase">
+                      {o.paymentMethod}
+                    </span>
+                    {o.flutterwaveTxId && (
+                      <span className="block text-[10px] text-ink-900/40">ID: {o.flutterwaveTxId}</span>
+                    )}
+                  </td>
+                  <td className="p-4 text-gold-700 font-bold">{formatPrice(o.total)}</td>
+                  <td className="p-4">
+                    <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded ${
+                      o.paymentStatus === 'PAID'
+                        ? 'bg-[#25D366]/10 text-[#20ba5a]'
+                        : 'bg-yellow-500/10 text-yellow-700'
+                    }`}>
+                      {o.paymentStatus}
+                    </span>
+                  </td>
+                  <td className="p-4 text-ink-900/55">{formatDate(o.createdAt)}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { adminSignOut } from "./actions";
 
 export default function AdminLayout({
   children,
@@ -45,10 +46,12 @@ export default function AdminLayout({
           </Link>
         </nav>
         <div className="p-6 border-t border-gold-500/10">
-          <button className="flex items-center space-x-3 px-4 py-3 text-red-400 hover:text-red-300 text-sm font-medium transition-colors w-full text-left">
-            <span>🚪</span>
-            <span>Sign Out</span>
-          </button>
+          <form action={adminSignOut}>
+            <button type="submit" className="flex items-center space-x-3 px-4 py-3 text-red-400 hover:text-red-300 text-sm font-medium transition-colors w-full text-left">
+              <span>🚪</span>
+              <span>Sign Out</span>
+            </button>
+          </form>
         </div>
       </aside>
 
