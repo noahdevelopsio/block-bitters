@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ProductVariant {
+  id          String      @id @default(cuid())
+  name        String      // e.g. "300ml Single Bottle"
+  sizeLabel   String      // e.g. "300ml", "1L", "3-Pack"
+  price       Int         // stored in kobo (smallest currency unit)
+  stock       Int         @default(0)
+  isActive    Boolean     @default(true)
+  images      String[]    // array of Vercel Blob URLs
+  description String?
+  sortOrder   Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique // human-readable, e.g. BB-0001
+  customerName    String
+  phone           String
+  altPhone        String?
+  email           String?
+  address         String
+  state           String
+  lga             String?
+  deliveryFee     Int           @default(0)
+  subtotal        Int
+  total           Int
+  paymentMethod   PaymentMethod
+  paymentStatus   PaymentStatus @default(UNPAID)
+  status          OrderStatus   @default(PENDING)
+  flutterwaveRef  String?       @unique
+  flutterwaveTxId String?
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id         String         @id @default(cuid())
+  order      Order          @relation(fields: [orderId], references: [id])
+  orderId    String
+  variant    ProductVariant @relation(fields: [variantId], references: [id])
+  variantId  String
+  quantity   Int
+  unitPrice  Int            // price at time of purchase
+}
+
+enum PaymentMethod {
+  PAY_ON_DELIVERY
+  FLUTTERWAVE
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+}
+
+model DeliveryZone {
+  id    String @id @default(cuid())
+  state String @unique
+  fee   Int
+}
