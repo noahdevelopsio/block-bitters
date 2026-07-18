@@ -20,8 +20,8 @@
 
   <!-- Wordmark: light fill for use on dark (forest-950) backgrounds -->
   <g transform="translate(128,38)">
-    <text x="0" y="0" font-family="'Playfair Display', Georgia, serif" font-weight="700" font-size="34" letter-spacing="0.5" fill="#FBF8F1">BLOCK</text>
-    <text x="0" y="36" font-family="'Playfair Display', Georgia, serif" font-weight="700" font-size="34" letter-spacing="2" fill="#FBF8F1">BITTERS</text>
+    <text x="0" y="0" font-family="'Space Grotesk', 'Arial', sans-serif" font-weight="700" font-size="34" letter-spacing="0.5" fill="#FBF8F1">BLOCK</text>
+    <text x="0" y="36" font-family="'Space Grotesk', 'Arial', sans-serif" font-weight="700" font-size="34" letter-spacing="1" fill="#FBF8F1">BITTERS</text>
     <text x="1" y="54" font-family="'Inter', Helvetica, Arial, sans-serif" font-weight="500" font-size="11" letter-spacing="3" fill="#E8C468">THE POWER OF NATURE</text>
   </g>
 </svg>
