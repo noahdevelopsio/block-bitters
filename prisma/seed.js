@@ -38,12 +38,20 @@ async function main() {
       sortOrder: 1,
     },
     {
+      name: "3-Bottle Pack",
+      sizeLabel: "3-Pack",
+      price: 450000, // ₦4,500
+      stock: 50,
+      description: "Convenient 3-pack bundle of Licor Amargo (3pcs).",
+      sortOrder: 2,
+    },
+    {
       name: "6-Bottle Pack",
       sizeLabel: "6-Pack",
       price: 750000, // ₦7,500
-      stock: 50,
+      stock: 30,
       description: "Value 6-pack box of Licor Amargo (6pcs).",
-      sortOrder: 2,
+      sortOrder: 3,
     },
   ];
 
@@ -51,9 +59,12 @@ async function main() {
     await prisma.productVariant.upsert({
       where: { id: variant.name.replace(/\s+/g, "-").toLowerCase() }, // mock stable ID for seeding
       update: {
+        name: variant.name,
+        sizeLabel: variant.sizeLabel,
         price: variant.price,
         stock: variant.stock,
         description: variant.description,
+        sortOrder: variant.sortOrder,
       },
       create: {
         id: variant.name.replace(/\s+/g, "-").toLowerCase(),

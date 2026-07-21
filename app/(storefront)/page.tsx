@@ -110,14 +110,16 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="relative w-80 h-96 flex items-center justify-center">
+          <div className="flex justify-center items-center relative">
+            {/* Ambient gold glow backdrop */}
+            <div className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gold-500/15 blur-3xl pointer-events-none" />
+            <div className="relative w-[88vw] max-w-[360px] h-[480px] sm:max-w-[460px] sm:h-[580px] flex items-center justify-center">
               <Image
                 src="/block-bitters-bottle-transparent-1600w.png"
                 alt="Licor Amargo Bottle"
                 fill
                 priority
-                className="object-contain drop-shadow-[0_20px_50px_rgba(199,154,62,0.2)]"
+                className="object-contain drop-shadow-[0_25px_60px_rgba(199,154,62,0.25)] hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
