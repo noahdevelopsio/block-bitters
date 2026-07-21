@@ -70,7 +70,7 @@ export default async function OrderConfirmationPage({
           <Link href="/" className="flex items-center">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters"
+              alt="Licor Amargo"
               width={160}
               height={40}
               priority
@@ -170,7 +170,7 @@ export default async function OrderConfirmationPage({
             Return Home
           </Link>
           <a
-            href="https://wa.me/2348121250431"
+            href="https://wa.me/2348037127939"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-forest-800/10 hover:border-gold-500 text-ink-900 px-8 py-3 rounded-lg font-bold text-sm tracking-wider uppercase transition-colors flex items-center justify-center"
@@ -183,7 +183,7 @@ export default async function OrderConfirmationPage({
       {/* Footer */}
       <footer className="bg-forest-950 text-cream-100/80 py-12 border-t border-gold-500/10 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-          <p>© {new Date().getFullYear()} Block Bitters. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Licor Amargo. All rights reserved.</p>
         </div>
       </footer>
     </div>

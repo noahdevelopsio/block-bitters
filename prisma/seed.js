@@ -7,7 +7,7 @@ async function main() {
   console.log("Seeding database...");
 
   // 1. Create Default Admin User
-  const adminEmail = "admin@blockbitters.com";
+  const adminEmail = "admin@licoramargo.com";
   const existingAdmin = await prisma.adminUser.findUnique({
     where: { email: adminEmail },
   });
@@ -18,10 +18,10 @@ async function main() {
       data: {
         email: adminEmail,
         passwordHash,
-        name: "Block Bitters Admin",
+        name: "Licor Amargo Admin",
       },
     });
-    console.log("✔ Default admin user created (admin@blockbitters.com / adminpassword123)");
+    console.log("✔ Default admin user created (admin@licoramargo.com / adminpassword123)");
   } else {
     console.log("✔ Admin user already exists");
   }
@@ -32,26 +32,18 @@ async function main() {
     {
       name: "Single Bottle",
       sizeLabel: "300ml",
-      price: 1500000, // ₦15,000
+      price: 150000, // ₦1,500
       stock: 100,
-      description: "Standard 300ml bottle of Block Bitters.",
+      description: "Standard 300ml bottle of Licor Amargo.",
       sortOrder: 1,
-    },
-    {
-      name: "3-Bottle Pack",
-      sizeLabel: "3-Pack",
-      price: 4050000, // ₦40,500 (10% savings)
-      stock: 50,
-      description: "Convenient 3-pack bundle of Block Bitters.",
-      sortOrder: 2,
     },
     {
       name: "6-Bottle Pack",
       sizeLabel: "6-Pack",
-      price: 7650000, // ₦76,500 (15% savings)
-      stock: 30,
-      description: "Value 6-pack box of Block Bitters for long-term stamina.",
-      sortOrder: 3,
+      price: 750000, // ₦7,500
+      stock: 50,
+      description: "Value 6-pack box of Licor Amargo (6pcs).",
+      sortOrder: 2,
     },
   ];
 

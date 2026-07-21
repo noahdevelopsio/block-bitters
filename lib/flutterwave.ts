@@ -52,12 +52,12 @@ export async function initializePayment(
       currency: "NGN",
       redirect_url: params.redirectUrl,
       customer: {
-        email: params.email || "guest@blockbitters.com",
+        email: params.email || "guest@licoramargo.com",
         phonenumber: params.phone,
         name: params.name,
       },
       customizations: {
-        title: "Block Bitters",
+        title: "Licor Amargo",
         description: "Payment for order " + params.txRef,
         logo: `${process.env.NEXT_PUBLIC_SITE_URL}/logo-mono.svg`,
       },

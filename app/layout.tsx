@@ -16,8 +16,8 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Block Bitters | The Power of Nature, Bottled for Men",
-    template: "%s | Block Bitters",
+    default: "Licor Amargo | The Power of Nature, Bottled for Men",
+    template: "%s | Licor Amargo",
   },
   description: "A premium herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum and Gorontula, handcrafted to support male strength, stamina, and energy.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Block Bitters | The Power of Nature, Bottled for Men",
+    title: "Licor Amargo | The Power of Nature, Bottled for Men",
     description: "Handcrafted to support male strength, stamina, and energy. 100% natural ingredients.",
     url: "/",
-    siteName: "Block Bitters",
+    siteName: "Licor Amargo",
     locale: "en_NG",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Block Bitters | Male Vitality Bottled",
+    title: "Licor Amargo | Male Vitality Bottled",
     description: "Premium handcrafted herbal bitters.",
   },
   icons: {

@@ -84,7 +84,7 @@ export default async function AdminPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Overview</h1>
-        <p className="text-sm text-ink-900/60 mt-1">Real-time stats and metrics for Block Bitters.</p>
+        <p className="text-sm text-ink-900/60 mt-1">Real-time stats and metrics for Licor Amargo.</p>
       </div>
 
       {/* Stats Grid */}

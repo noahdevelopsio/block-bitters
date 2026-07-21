@@ -12,10 +12,10 @@ export default function ContactPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Block Bitters",
+            "name": "Licor Amargo",
             "image": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/logo-mono.svg`,
             "url": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/contact`,
-            "telephone": "+2348121250431",
+            "telephone": "+2348037127939",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Shop 20A, Igando Multipurpose Market, Igando, Alimosho",
@@ -32,7 +32,7 @@ export default function ContactPage() {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters"
+              alt="Licor Amargo"
               width={160}
               height={40}
               priority
@@ -60,7 +60,7 @@ export default function ContactPage() {
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <span className="text-gold-700 text-xs font-semibold tracking-widest uppercase block">Get In Touch</span>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Contact Block Bitters</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Contact Licor Amargo</h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
@@ -82,8 +82,8 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-4 h-4 text-gold-500" />
-                  <a href="tel:+2348121250431" className="hover:text-gold-700 transition-colors">
-                    +234 812 125 0431
+                  <a href="tel:+2348037127939" className="hover:text-gold-700 transition-colors">
+                    +234 803 712 7939
                   </a>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -97,7 +97,7 @@ export default function ContactPage() {
 
               <div className="pt-4">
                 <a
-                  href="https://wa.me/2348121250431"
+                  href="https://wa.me/2348037127939"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-3 rounded-lg font-bold text-center block tracking-wide text-sm uppercase transition-colors"
@@ -138,7 +138,7 @@ export default function ContactPage() {
       {/* Footer */}
       <footer className="bg-forest-950 text-cream-100/80 py-12 border-t border-gold-500/10 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-          <p>© {new Date().getFullYear()} Block Bitters. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Licor Amargo. All rights reserved.</p>
         </div>
       </footer>
     </div>

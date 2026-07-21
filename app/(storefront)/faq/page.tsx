@@ -4,8 +4,8 @@ import Image from "next/image";
 export default function FAQPage() {
   const faqs = [
     {
-      q: "What is Block Bitters made from?",
-      a: "Block Bitters is made from a blend of honey, Tongkat Ali, Maka Root, Korean Red Ginseng, plum, and Gorontula, all-natural botanical ingredients.",
+      q: "What is Licor Amargo made from?",
+      a: "Licor Amargo is made from a blend of honey, Tongkat Ali, Maka Root, Korean Red Ginseng, plum, and Gorontula, all-natural botanical ingredients.",
     },
     {
       q: "How do I pay?",
@@ -16,8 +16,8 @@ export default function FAQPage() {
       a: "Yes, we deliver to all 36 states and the FCT. Delivery fees and timelines vary by location.",
     },
     {
-      q: "Is Block Bitters safe to use?",
-      a: "Block Bitters is made from natural herbal ingredients. As with any supplement, we recommend consulting a healthcare professional if you have an existing medical condition or are on medication.",
+      q: "Is Licor Amargo safe to use?",
+      a: "Licor Amargo is made from natural herbal ingredients. As with any supplement, we recommend consulting a healthcare professional if you have an existing medical condition or are on medication.",
     },
     {
       q: "How long does delivery take?",
@@ -55,7 +55,7 @@ export default function FAQPage() {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters"
+              alt="Licor Amargo"
               width={160}
               height={40}
               priority
@@ -103,7 +103,7 @@ export default function FAQPage() {
       {/* Footer */}
       <footer className="bg-forest-950 text-cream-100/80 py-12 border-t border-gold-500/10 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-          <p>© {new Date().getFullYear()} Block Bitters. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Licor Amargo. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -10,7 +10,7 @@ export default function AboutPage() {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters"
+              alt="Licor Amargo"
               width={160}
               height={40}
               priority
@@ -43,7 +43,7 @@ export default function AboutPage() {
 
           <div className="bg-white border border-forest-800/5 p-8 sm:p-12 rounded-2xl shadow-sm space-y-6 text-base text-ink-900/80 leading-relaxed">
             <p>
-              Block Bitters is produced by Block Media Resources in Igando, Lagos, a herbal bitters blend built on traditional botanical knowledge and modern quality standards. We started Block Bitters because we believe men deserve natural, honest alternatives - no synthetic shortcuts, just nature, bottled with care.
+              Licor Amargo is produced by Block Media Resources in Lagos, a herbal bitters blend built on traditional botanical knowledge and modern quality standards. We started Licor Amargo because we believe men deserve natural, honest alternatives - no synthetic shortcuts, just nature, bottled with care.
             </p>
             <p>
               Every bottle is a careful curation of premium botanicals like Tongkat Ali, Maka Root, Korean Red Ginseng, plum, honey, and Gorontula. We do not compromise on sourcing, ensuring that the strength and properties of nature are preserved for your wellness.
@@ -59,7 +59,7 @@ export default function AboutPage() {
       {/* Footer */}
       <footer className="bg-forest-950 text-cream-100/80 py-12 border-t border-gold-500/10 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-          <p>© {new Date().getFullYear()} Block Bitters. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Licor Amargo. All rights reserved.</p>
         </div>
       </footer>
     </div>

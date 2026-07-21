@@ -16,7 +16,7 @@ export default function AdminLayout({
           <Link href="/admin" className="flex items-center">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters Admin"
+              alt="Licor Amargo Admin"
               width={160}
               height={40}
               priority

@@ -27,11 +27,11 @@ export default async function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Block Bitters",
+            "name": "Licor Amargo",
             "image": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/logo-mono.svg`,
             "@id": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
             "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-            "telephone": "+2348121250431",
+            "telephone": "+2348037127939",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Shop 20A, Igando Multipurpose Market, Igando, Alimosho",
@@ -41,7 +41,7 @@ export default async function HomePage() {
             },
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+2348121250431",
+              "telephone": "+2348037127939",
               "contactType": "customer service",
               "email": "dblockentertainer@gmail.com"
             }
@@ -55,7 +55,7 @@ export default async function HomePage() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo-horizontal-dark.svg"
-                alt="Block Bitters"
+                alt="Licor Amargo"
                 width={160}
                 height={40}
                 priority
@@ -100,7 +100,7 @@ export default async function HomePage() {
                 href="/product"
                 className="bg-gold-500 hover:bg-gold-300 text-forest-950 px-8 py-4 rounded-lg font-bold text-center uppercase tracking-wider transition-all duration-300 shadow-xl shadow-gold-500/20"
               >
-                Shop Block Bitters
+                Shop Licor Amargo
               </Link>
               <Link
                 href="/about"
@@ -114,7 +114,7 @@ export default async function HomePage() {
             <div className="relative w-80 h-96 flex items-center justify-center">
               <Image
                 src="/block-bitters-bottle-transparent-1600w.png"
-                alt="Block Bitters Bottle"
+                alt="Licor Amargo Bottle"
                 fill
                 priority
                 className="object-contain drop-shadow-[0_20px_50px_rgba(199,154,62,0.2)]"
@@ -140,7 +140,7 @@ export default async function HomePage() {
       <section className="py-24 bg-cream-100 text-ink-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Why Men Choose Block Bitters</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Why Men Choose Licor Amargo</h2>
             <p className="text-base text-ink-900/60">
               Roots, herbs, and honey - crafted responsibly for the modern man.
             </p>
@@ -181,7 +181,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <span className="text-gold-700 text-xs font-semibold tracking-widest uppercase block">Shop Now</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Choose Your Block Bitters Bundle</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Choose Your Licor Amargo Bundle</h2>
             <p className="text-base text-ink-900/60">
               Get the original herbal formula delivered direct to your door. Select a bottle or save with our multi-pack bundles.
             </p>
@@ -241,7 +241,7 @@ export default async function HomePage() {
           <div className="space-y-4">
             <Image
               src="/logo-horizontal-dark.svg"
-              alt="Block Bitters"
+              alt="Licor Amargo"
               width={160}
               height={40}
               className="h-10 w-auto mb-2"
@@ -250,7 +250,7 @@ export default async function HomePage() {
               The Power of Nature - Bottled for Men
             </p>
             <p className="text-xs text-cream-100/40">
-              © {new Date().getFullYear()} Block Bitters. All rights reserved.
+              © {new Date().getFullYear()} Licor Amargo. All rights reserved.
             </p>
           </div>
           <div className="space-y-4">
@@ -262,7 +262,7 @@ export default async function HomePage() {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-gold-500" />
-                <span>+234 812 125 0431</span>
+                <span>+234 803 712 7939</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-gold-500 mt-0.5" />
@@ -273,7 +273,7 @@ export default async function HomePage() {
           <div className="space-y-4">
             <h4 className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-300">Disclaimer</h4>
             <p className="text-xs text-cream-100/40 leading-relaxed">
-              Block Bitters is a herbal supplement and is not evaluated or approved as a treatment for any medical condition. Individual results may vary.
+              Licor Amargo is a herbal supplement and is not evaluated or approved as a treatment for any medical condition. Individual results may vary.
             </p>
           </div>
         </div>
