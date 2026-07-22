@@ -188,7 +188,7 @@ export default async function HomePage() {
             <span className="text-gold-300 text-xs font-semibold tracking-widest uppercase block">100% Natural Botanicals</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">What's Inside</h2>
             <p className="text-base text-cream-100/70 leading-relaxed">
-              Every bottle of Licor Amargo is made from carefully sourced natural ingredients — no shortcuts, no fillers. Just roots, herbs, and honey, bottled the way nature intended.
+              Every bottle of Licor Amargo is made from carefully sourced natural ingredients no shortcuts, no fillers. Just roots, herbs, and honey, bottled the way nature intended.
             </p>
           </div>
 
