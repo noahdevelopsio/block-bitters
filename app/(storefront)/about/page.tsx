@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ActionLink from "@/components/storefront/ActionLink";
 
 export default function AboutPage() {
   return (
@@ -24,12 +25,12 @@ export default function AboutPage() {
             <Link href="/faq" className="hover:text-gold-300 transition-colors">FAQ</Link>
             <Link href="/contact" className="hover:text-gold-300 transition-colors">Contact</Link>
           </nav>
-          <Link
+          <ActionLink
             href="/product"
             className="bg-gold-500 hover:bg-gold-300 text-forest-950 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide uppercase transition-colors"
           >
             Order Now
-          </Link>
+          </ActionLink>
         </div>
       </header>
 

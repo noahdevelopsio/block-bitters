@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { Leaf, Truck, CreditCard, Shield, Mail, Phone, MapPin } from "lucide-react";
+import ActionLink from "@/components/storefront/ActionLink";
 
 export default async function HomePage() {
   const variants = await prisma.productVariant.findMany({
@@ -71,12 +72,12 @@ export default async function HomePage() {
             <Link href="/contact" className="hover:text-gold-300 transition-colors">Contact</Link>
           </nav>
           <div>
-            <Link
+            <ActionLink
               href="/product"
               className="bg-gold-500 hover:bg-gold-300 text-forest-950 px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide uppercase transition-all duration-300 shadow-lg shadow-gold-500/10"
             >
               Order Now
-            </Link>
+            </ActionLink>
           </div>
         </div>
       </header>
@@ -96,12 +97,12 @@ export default async function HomePage() {
               A herbal bitters blend of Tongkat Ali, Maka Root, Korean Red Ginseng, honey, plum, and Gorontula crafted to support strength, stamina, energy, and confidence, the natural way.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link
+              <ActionLink
                 href="/product"
                 className="bg-gold-500 hover:bg-gold-300 text-forest-950 px-8 py-4 rounded-lg font-bold text-center uppercase tracking-wider transition-all duration-300 shadow-xl shadow-gold-500/20"
               >
                 Shop Licor Amargo
-              </Link>
+              </ActionLink>
               <Link
                 href="/about"
                 className="border border-cream-100/20 hover:border-gold-300 text-cream-100 hover:text-gold-300 px-8 py-4 rounded-lg font-bold text-center uppercase tracking-wider transition-all duration-300"
@@ -203,12 +204,9 @@ export default async function HomePage() {
             ].map((ing, idx) => (
               <div
                 key={idx}
-                className="bg-forest-900/60 border border-gold-500/15 rounded-xl p-5 text-center flex flex-col justify-center items-center hover:border-gold-300/40 transition-colors duration-300"
+                className="bg-forest-900/60 border border-gold-500/15 rounded-xl p-6 text-center flex flex-col justify-center items-center hover:border-gold-300/40 transition-colors duration-300"
               >
-                <div className="w-10 h-10 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-300 font-serif font-bold mb-3 text-sm">
-                  ✦
-                </div>
-                <h3 className="font-serif font-bold text-cream-100 text-base mb-1">{ing.name}</h3>
+                <h3 className="font-serif font-bold text-cream-100 text-base mb-1.5">{ing.name}</h3>
                 <span className="text-[11px] text-gold-300/70 uppercase tracking-wider block">{ing.role}</span>
               </div>
             ))}
@@ -260,12 +258,12 @@ export default async function HomePage() {
                     {isOutOfStock ? (
                       <span className="text-xs text-red-500 font-bold uppercase tracking-wider">Out of Stock</span>
                     ) : (
-                      <Link
+                      <ActionLink
                         href={`/checkout?variantId=${v.id}&quantity=1`}
                         className="bg-forest-950 hover:bg-forest-800 text-cream-100 px-5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors shadow-sm shadow-forest-950/10"
                       >
                         Buy Now
-                      </Link>
+                      </ActionLink>
                     )}
                   </div>
                 </div>

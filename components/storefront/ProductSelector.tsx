@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 export interface ProductVariant {
   id: string;
@@ -46,8 +47,11 @@ export default function ProductSelector({ variants }: ProductSelectorProps) {
     }
   };
 
+  const [redirecting, setRedirecting] = useState(false);
+
   const handleCheckoutRedirect = () => {
     if (!selectedVariantId) return;
+    setRedirecting(true);
     router.push(`/checkout?variantId=${selectedVariantId}&quantity=${quantity}`);
   };
 
@@ -145,10 +149,18 @@ export default function ProductSelector({ variants }: ProductSelectorProps) {
       <div className="pt-4">
         <button
           type="button"
+          disabled={redirecting}
           onClick={handleCheckoutRedirect}
-          className="w-full bg-forest-950 hover:bg-forest-800 text-cream-100 text-center py-4 rounded-lg font-bold uppercase tracking-wider transition-colors shadow-lg shadow-forest-950/10 hover:shadow-xl"
+          className="w-full bg-forest-950 hover:bg-forest-800 text-cream-100 text-center py-4 rounded-lg font-bold uppercase tracking-wider transition-colors shadow-lg shadow-forest-950/10 hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-75"
         >
-          Proceed to Checkout
+          {redirecting ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin text-gold-300" />
+              <span>Proceeding to Checkout...</span>
+            </>
+          ) : (
+            <span>Proceed to Checkout</span>
+          )}
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 
 interface DeliveryZone {
   state: string;
@@ -334,9 +334,16 @@ export default function CheckoutForm({
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-forest-950 hover:bg-forest-800 text-cream-100 py-3.5 rounded-lg font-bold uppercase tracking-wider text-sm transition-colors shadow-lg disabled:opacity-50 mt-4 flex items-center justify-center"
+            className="w-full bg-forest-950 hover:bg-forest-800 text-cream-100 py-3.5 rounded-lg font-bold uppercase tracking-wider text-sm transition-colors shadow-lg disabled:opacity-50 mt-4 flex items-center justify-center space-x-2"
           >
-            {loading ? "Processing..." : `Confirm Order (${formatPrice(total)})`}
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-gold-300" />
+                <span>Processing Order...</span>
+              </>
+            ) : (
+              <span>Confirm Order ({formatPrice(total)})</span>
+            )}
           </button>
         </div>
       </div>
