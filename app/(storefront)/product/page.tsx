@@ -81,7 +81,7 @@ export default async function ProductPage() {
           <div className="space-y-4">
             <div className="bg-forest-950 border border-gold-500/20 aspect-square rounded-2xl flex items-center justify-center p-8 relative overflow-hidden">
               <Image
-                src="/block-bitters-bottle-transparent-1600w.png"
+                src="/licor-amargo-bottle-transparent-1600w.png"
                 alt="Licor Amargo Bottle"
                 fill
                 priority

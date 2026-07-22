@@ -115,7 +115,7 @@ export default async function HomePage() {
             <div className="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gold-500/15 blur-3xl pointer-events-none" />
             <div className="relative w-[88vw] max-w-[360px] h-[480px] sm:max-w-[460px] sm:h-[580px] flex items-center justify-center">
               <Image
-                src="/block-bitters-bottle-transparent-1600w.png"
+                src="/licor-amargo-bottle-transparent-1600w.png"
                 alt="Licor Amargo Bottle"
                 fill
                 priority
@@ -178,6 +178,44 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Ingredients Section ("What's Inside") */}
+      <section className="py-24 bg-forest-950 text-cream-100 border-t border-gold-500/10 relative overflow-hidden">
+        {/* Subtle background ambient gold glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-500/5 blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-gold-300 text-xs font-semibold tracking-widest uppercase block">100% Natural Botanicals</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">What's Inside</h2>
+            <p className="text-base text-cream-100/70 leading-relaxed">
+              Every bottle of Licor Amargo is made from carefully sourced natural ingredients — no shortcuts, no fillers. Just roots, herbs, and honey, bottled the way nature intended.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+            {[
+              { name: "Honey", role: "Natural Sweetener & Energy" },
+              { name: "Tongkat Ali", role: "Stamina & Vitality" },
+              { name: "Maka Root", role: "Endurance & Balance" },
+              { name: "Korean Red Ginseng", role: "Circulation & Focus" },
+              { name: "Plum", role: "Antioxidant & Flavor" },
+              { name: "Gorontula", role: "Traditional Libido Support" },
+            ].map((ing, idx) => (
+              <div
+                key={idx}
+                className="bg-forest-900/60 border border-gold-500/15 rounded-xl p-5 text-center flex flex-col justify-center items-center hover:border-gold-300/40 transition-colors duration-300"
+              >
+                <div className="w-10 h-10 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-300 font-serif font-bold mb-3 text-sm">
+                  ✦
+                </div>
+                <h3 className="font-serif font-bold text-cream-100 text-base mb-1">{ing.name}</h3>
+                <span className="text-[11px] text-gold-300/70 uppercase tracking-wider block">{ing.role}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Products Shop Grid Section */}
       <section className="py-24 bg-white text-ink-900 border-t border-forest-800/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -200,7 +238,7 @@ export default async function HomePage() {
                   <div className="space-y-4">
                     <div className="bg-forest-950 border border-gold-500/10 aspect-square rounded-xl flex items-center justify-center relative overflow-hidden p-6">
                       <Image
-                        src="/block-bitters-bottle-transparent-800w.webp"
+                        src="/licor-amargo-bottle-transparent-800w.webp"
                         alt={v.name}
                         fill
                         className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
