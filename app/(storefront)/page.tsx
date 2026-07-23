@@ -236,7 +236,7 @@ export default async function HomePage() {
                   <div className="space-y-4">
                     <div className="bg-forest-950 border border-gold-500/10 aspect-square rounded-xl flex items-center justify-center relative overflow-hidden p-6">
                       <Image
-                        src="/licor-amargo-bottle-transparent-800w.webp"
+                        src={v.images && v.images.length > 0 && v.images[0] !== "/icon.svg" ? v.images[0] : "/licor-amargo-bottle-transparent-800w.webp"}
                         alt={v.name}
                         fill
                         className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"

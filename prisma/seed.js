@@ -36,6 +36,7 @@ async function main() {
       stock: 100,
       description: "Standard 300ml bottle of Licor Amargo.",
       sortOrder: 1,
+      images: ["/licor-amargo-bottle-transparent-1600w.png"],
     },
     {
       name: "3-Bottle Pack",
@@ -44,6 +45,7 @@ async function main() {
       stock: 50,
       description: "Convenient 3-pack bundle of Licor Amargo (3pcs).",
       sortOrder: 2,
+      images: ["/licor-amargo-3-pack.webp"],
     },
     {
       name: "6-Bottle Pack",
@@ -52,6 +54,7 @@ async function main() {
       stock: 30,
       description: "Value 6-pack box of Licor Amargo (6pcs).",
       sortOrder: 3,
+      images: ["/licor-amargo-6-pack.webp"],
     },
   ];
 
@@ -65,6 +68,7 @@ async function main() {
         stock: variant.stock,
         description: variant.description,
         sortOrder: variant.sortOrder,
+        images: variant.images,
       },
       create: {
         id: variant.name.replace(/\s+/g, "-").toLowerCase(),
@@ -74,7 +78,7 @@ async function main() {
         stock: variant.stock,
         description: variant.description,
         sortOrder: variant.sortOrder,
-        images: ["/icon.svg"], // placeholder default icon
+        images: variant.images,
       },
     });
   }
